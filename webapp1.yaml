@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashuwebapp1
+  name: ashuwebapp1   # name of deployment that must be unique for all 
+spec:
+  replicas: 1   #  means only  one pod we need 
+  selector:
+    matchLabels:
+      app: ashuwebapp1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:     #  this is tag on pods or we call it label 
+        app: ashuwebapp1
+    spec:
+      containers:
+      - image: dockerashu/devsecops:httpdv001  #  name of image from Docker hub 
+        name: devsecops   # name of container 
+        imagePullPolicy: Always #  try to pull image every time is build is successful  
+        resources: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashuwebs1
+  name: ashuwebs1
+spec:
+  ports:
+  - name: 3453-80
+    port: 3453
+    protocol: TCP
+    targetPort: 80
+  selector:    #  this will find the pod with thier labels 
+   app: ashuwebapp1   #  BOth like key and value must match to pod labels 
+  type: NodePort
+status:
+  loadBalancer: {}

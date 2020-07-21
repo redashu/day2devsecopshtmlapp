@@ -1,0 +1,12 @@
+ 165  git status
+  166  git  branch 
+  167  git  checkout  -b   test 
+  168  git branch 
+  169  git  checkout  -b   dev
+  170  git branch 
+  171  ls
+  172  history 
+  173  git branch 
+  174  git  branch 
+  175  git  checkout  master
+
